@@ -146,16 +146,39 @@ document.addEventListener('DOMContentLoaded', () => {
         document.head.appendChild(styleSheet);
       }
 
-      // Simulate network request latency (1.2 seconds)
-      setTimeout(() => {
-        // Success response logic
-        showFeedback(`Thank you, ${name}! Your message has been sent successfully. I'll get back to you shortly.`, 'success');
-        contactForm.reset();
-        
+      // Send data to Web3Forms API
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: 'd620d48f-e694-4e80-9029-67c2fba52f52', // Replace with your Web3Forms Access Key
+          name: name,
+          email: email,
+          subject: subject,
+          message: message
+        })
+      })
+      .then(async (response) => {
+        const result = await response.json();
+        if (response.status === 200) {
+          showFeedback(`Thank you, ${name}! Your message has been sent successfully. I'll get back to you shortly.`, 'success');
+          contactForm.reset();
+        } else {
+          showFeedback(result.message || 'Something went wrong. Please try again.', 'error');
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        showFeedback('Network error. Please check your internet connection and try again.', 'error');
+      })
+      .finally(() => {
         // Restore button state
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalBtnText;
-      }, 1200);
+      });
     });
   }
 
