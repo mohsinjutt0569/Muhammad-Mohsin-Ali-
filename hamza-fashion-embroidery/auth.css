@@ -1,0 +1,56 @@
+/* auth.css – simple styling for login/register cards */
+
+.auth-container {
+  max-width: 500px;
+  margin: 4rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.auth-card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.auth-card h2 {
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: var(--color-foreground);
+}
+
+.auth-card div {
+  margin-bottom: 0.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-card label {
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+.auth-card input {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--color-muted);
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+}
+
+.auth-card button {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.auth-card p {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.auth-card a {
+  color: var(--color-accent);
+  cursor: pointer;
+}
